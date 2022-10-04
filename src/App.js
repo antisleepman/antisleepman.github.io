@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./index.scss";
+import "./scss/index.scss";
 
 function App() {
   let [price, setPrice] = useState(3_300_000);
@@ -12,13 +12,17 @@ function App() {
     setAnInitialFee((term / 100) * price);
     SetAmountLeaseAgreement(anInitialFee + months * monthslyPayment);
     SetmonthslyPayment(
-      price *
-        anInitialFee *
-        ((0.035 * Math.pow(1 + 0.035, months)) /
-          (Math.pow(1 + 0.035, months) - 1))
-    );
+      (price - anInitialFee) *
+        ((0.035 * Math.pow((1 + 0.035), months)) /
+          (Math.pow((1 + 0.035), months) - 1))
+        )
   }
-
+  for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
+    e.style.setProperty('--value', e.value);
+    e.style.setProperty('--min', e.min === '' ? '0' : e.min);
+    e.style.setProperty('--max', e.max === '' ? '100' : e.max);
+    e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+  }
 const sendData  =  async () => {
   let data = {
     price: price,
@@ -71,7 +75,7 @@ const sendData  =  async () => {
     setData(term, price, months);
   }, [term, price, months]);
   return (
-    <div className="container">
+    <form className="container">
       <h1 className="headtext">Рассчитайте стоимость автомобиля в лизинг</h1>
       <div className="inputs">
         <div className="inputForm">
@@ -79,7 +83,8 @@ const sendData  =  async () => {
           <div className="Shapes">
             <h2 className="numberinput">
               <input
-                type="number"
+                type="tel"
+                inputMode="numeric"
                 className="numberinput"
                 min={1_000_000}
                 max={6_000_000}
@@ -103,6 +108,7 @@ const sendData  =  async () => {
           <div className="Shapes">
             <h2 className="numberinput">
               {Math.round(anInitialFee)}₽
+             
               <input
                 className="percent"
                 type="number"
@@ -111,6 +117,8 @@ const sendData  =  async () => {
                 value={term}
                 onChange={(e) => setTerm(e.target.value)}
               />
+               <label className="mouth">%
+              </label>
             </h2>
             <input
               type="range"
@@ -126,15 +134,16 @@ const sendData  =  async () => {
         <div className="inputForm">
           <h3 className="mainLabel">Срок лизинга</h3>
           <div className="Shapes">
-            <h2 className="ruble">
+            <h2 className="numberinput">
               <input
                 type="number"
                 min={1}
                 max={60}
+                className='numberinput'
                 value={months}
                 onChange={(e) => setmonths(e.target.value)}
               />
-              мес.
+              <label className="mouth">мес.</label>
             </h2>
             <input
               type="range"
@@ -147,6 +156,7 @@ const sendData  =  async () => {
           </div>
         </div>
       </div>
+      <div className="results" >
       <div className="result">
         <h3 className="title">Сумма договора лизинга</h3>
         <h1 className="content">{Math.round(AmountLeaseAgreement)}₽</h1>
@@ -155,8 +165,9 @@ const sendData  =  async () => {
         <h3 className="title">Ежемесячный платеж от</h3>
         <h1 className="content">{Math.round(monthslyPayment)}₽</h1>
       </div>
-      <button onClick={sendData} >Оставить заявку</button>
-    </div>
+      <button onClick={sendData} className="buttomsend" >Оставить заявку</button>
+      </div>
+    </form>
   );
 }
 export default App;

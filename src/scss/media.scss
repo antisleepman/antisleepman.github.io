@@ -1,0 +1,237 @@
+@media (max-with: 1200px) {
+  .headtext {
+    margin-top: 213px;
+    height: 124px;
+    width: 279px;
+    margin-left: 47px;
+  }
+  .inputs {
+    margin-left: 47px;
+    margin-top: 32px;
+    width: 100%;
+    .inputForm {
+      width: 427px;
+      height: 119px;
+      margin-right: 32px;
+      .mainlabel {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+      }
+      .Shapes {
+        width: 427px;
+        height: 68px;
+        h2.numberinput {
+          input[type="number"].numberinput {
+            width: 427px;
+          }
+          .percent {
+            margin-left: 78px;
+            padding: 0px 7px;
+          }
+        }
+        .progress {
+          width: 260px;
+        }
+      }
+    }
+  }
+  .results {
+    margin-top: 16px;
+    margin-left: 20px;
+    .result {
+      margin-bottom: 29px;
+      .title {
+        width: 167px;
+        height: 19px;
+      }
+      .content {
+        width: 114px;
+        height: 20px;
+      }
+      width: 167px;
+      height: 41px;
+    }
+    .buttomsend {
+      width: 426px;
+      height: 60px;
+    }
+  }
+}
+
+@media (max-with: 1024px) {
+  .headtext {
+    margin-top: 213px;
+    height: 124px;
+    width: 279px;
+    margin-left: 47px;
+  }
+  .inputs {
+    margin-left: 47px;
+    margin-top: 32px;
+    .inputForm {
+      width: 427px;
+      height: 119px;
+      margin-right: 32px;
+      .Shapes {
+        width: 427px;
+        h2.numberinput {
+          input[type="number"].numberinput {
+            width: 420px;
+          }
+          .percent {
+            margin-left: 78px;
+            padding: 0px 7px;
+          }
+        }
+        .progress {
+          width: 260px;
+        }
+      }
+    }
+  }
+  .results {
+    margin-top: 16px;
+    flex-direction: row;
+    margin-left: 20px;
+    .result {
+      flex-direction: row;
+      margin-bottom: 29px;
+      .title {
+        width: 167px;
+        height: 19px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 136%;
+      }
+      .content {
+        width: 114px;
+        height: 20px;
+        font-weight: 900;
+        font-size: 22px;
+        line-height: 20px;
+      }
+
+      width: 167px;
+      height: 41px;
+    }
+    .buttomsend {
+      width: 426px;
+      height: 60px;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 20px;
+    }
+  }
+}
+@media (max-with: 769px) {
+  .headtext {
+    margin-top: 100px;
+  }
+  .inputs {
+    .inputForm {
+      width: 928px;
+      height: 119px;
+      margin-bottom: 32px;
+      .Shapes {
+        width: 928px;
+        h2.numberinput {
+          input[type="number"].numberinput {
+            width: 860px;
+          }
+          .percent {
+            margin-left: 710px;
+            padding: 0px 7px;
+          }
+        }
+        .progress {
+          width: 880px;
+        }
+      }
+    }
+  }
+  .results {
+    margin-top: 37px;
+    .result {
+      margin-right: 201px;
+      width: 279px;
+      height: 81px;
+    }
+    .buttomsend {
+      width: 345px;
+      position: absolute;
+      width: 345px;
+      height: 68px;
+      left: 48px;
+      top: 825px;
+      margin-top: 44px;
+    }
+  }
+}
+@media (max-with: 320px) {
+  .headtext {
+    margin-top: 44px;
+    height: 124px;
+    width: 279px;
+    margin-left: 21px;
+  }
+  .inputs {
+    margin-left: 4px;
+    margin-top: 99px;
+    .inputForm {
+      width: 280px;
+      height: 96px;
+      margin-bottom: 16px;
+      margin-top: 16px;
+      .Shapes {
+        width: 280px;
+        h2.numberinput {
+          input[type="number"].numberinput {
+            width: 230px;
+          }
+          .percent {
+            margin-left: 78px;
+            padding: 0px 7px;
+          }
+        }
+        .progress {
+          width: 260px;
+        }
+      }
+    }
+  }
+  .results {
+    margin-top: 16px;
+    flex-direction: column;
+    margin-left: 20px;
+    .result {
+      flex-direction: column;
+      margin-bottom: 29px;
+      .title {
+        width: 167px;
+        height: 19px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 136%;
+      }
+      .content {
+        width: 114px;
+        height: 20px;
+        font-weight: 900;
+        font-size: 22px;
+        line-height: 20px;
+      }
+
+      width: 167px;
+      height: 41px;
+    }
+    .buttomsend {
+      width: 280px;
+      height: 60px;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 20px;
+      margin-top: -10px;
+    }
+  }
+}
