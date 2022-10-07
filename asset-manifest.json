@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/antisleepman.github.io./static/css/main.d6b02d79.css",
+    "main.js": "/antisleepman.github.io./static/js/main.84d52b28.js",
+    "static/media/Nekst-Black.ttf": "/antisleepman.github.io./static/media/Nekst-Black.dffaebf93d38d4c41536.ttf",
+    "static/media/Gilroy-Bold.ttf": "/antisleepman.github.io./static/media/Gilroy-Bold.901a60fc2835c74fba67.ttf",
+    "static/media/Gilroy-Light.eot": "/antisleepman.github.io./static/media/Gilroy-Light.8862796bffbd019727b3.eot",
+    "static/media/Gilroy-Light.ttf": "/antisleepman.github.io./static/media/Gilroy-Light.1b7fff53076b21283967.ttf",
+    "static/media/Nekst-Black.woff": "/antisleepman.github.io./static/media/Nekst-Black.f0e2921efcf1112b1749.woff",
+    "static/media/Nekst-Black.woff2": "/antisleepman.github.io./static/media/Nekst-Black.44814bfd3ba4a266cf1d.woff2",
+    "static/media/Gilroy-Bold.woff": "/antisleepman.github.io./static/media/Gilroy-Bold.0607a1bc636f63251ed8.woff",
+    "static/media/Gilroy-Light.woff": "/antisleepman.github.io./static/media/Gilroy-Light.9df2f5dbbb9c90a6ede7.woff",
+    "static/media/Gilroy-Bold.woff2": "/antisleepman.github.io./static/media/Gilroy-Bold.ef7c40ff1efeaaa4c7c6.woff2",
+    "index.html": "/antisleepman.github.io./index.html",
+    "main.d6b02d79.css.map": "/antisleepman.github.io./static/css/main.d6b02d79.css.map",
+    "main.84d52b28.js.map": "/antisleepman.github.io./static/js/main.84d52b28.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d6b02d79.css",
+    "static/js/main.84d52b28.js"
+  ]
+}
