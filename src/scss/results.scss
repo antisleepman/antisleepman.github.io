@@ -4,7 +4,7 @@
   margin-top: 44px;
   margin-left: 47px;
   .result {
-    margin-right: 245px;
+    margin-right: 17%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -24,23 +24,52 @@
     }
   }
   .buttomsend {
-    width: 426px;
+    margin-left: 1%;
     height: 68px;
-    margin-top: 5px;
-    margin-left: -110px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px 12px;
-    gap: 10px;
     background: #ff9514;
     border-radius: 40px;
+    padding: 8px 16px 12px;
     font-family: "Nekst-Black";
     font-style: normal;
     font-weight: 900;
     font-size: 30px;
     line-height: 36px;
     color: #ffffff;
+    &:hover{
+       background: #111111 ;
+    }
+    &:focus{
+      background: #575757;
+    }
+    &:disabled{
+      background: rgba(255, 149, 20, 0.4);
+    }
+  }
+}
+
+
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 120px;
+  height: 48px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 32px;
+  height: 32px;
+margin: 10px 45px ;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
