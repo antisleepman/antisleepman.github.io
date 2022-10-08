@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import Button from "./components/Button";
+import InputFoarm from "./components/InputFoarm";
+import Result from "./components/Result";
+import useDebounce from "./hooks/debounce";
+import loadProgress from "./js/loadProgress";
 import "./scss/index.scss";
 function App() {
   const [price, setPrice] = useState(3_300_000);
@@ -8,14 +13,33 @@ function App() {
   const [anInitialFee, setAnInitialFee] = useState(420_000);
   const [AmountLeaseAgreement, SetAmountLeaseAgreement] = useState(4_467_313);
   const [monthslyPayment, SetmonthslyPayment] = useState(114_455);
-  for (let e of document.querySelectorAll(
-    'input[type="range"].slider-progress'
-  )) {
-    e.style.setProperty("--value", e.value);
-    e.style.setProperty("--min", e.min === "" ? "0" : e.min);
-    e.style.setProperty("--max", e.max === "" ? "100" : e.max);
-    e.addEventListener("input", () => e.style.setProperty("--value", e.value));
-  }
+
+  /* Загрузка данных для progress бара */
+  loadProgress();
+  /* сброс к ближайшему корректному числу */
+  const check = (type) => {
+    switch (type) {
+      case "price":
+        if (price > 6000000 || price < 1000000) {
+          if (price < 3000001) setPrice(1000000);
+          else setPrice(6000000);
+        }
+        break;
+      case "months":
+        if (months > 60 || months < 1) {
+          if (months < 31) setmonths(1);
+          else setmonths(60);
+        }
+        break;
+      case "term":
+        if (term > 60 || term < 10) {
+          if (term < 31) setTerm(10);
+          else setTerm(60);
+        }
+        break;
+    }
+  };
+  /* запрос к серверу */
   const onSubmit = async () => {
     const data = {
       price: price,
@@ -25,7 +49,6 @@ function App() {
       AmountLeaseAgreement: AmountLeaseAgreement,
       monthslyPayment: monthslyPayment,
     };
-
     try {
       const response = await fetch("https://eoj3r7f3r4ef6v4.m.pipedream.net", {
         method: "POST",
@@ -37,21 +60,20 @@ function App() {
       throw new Error(`ERROR`);
     }
   };
+/* Увеличиваем время на ввод текст инпутов */
+  const checkvalue = useDebounce((name) => {
+    check(name);
+  }, 1000);
 
+/* Обработка текст инпутов */
+  const handlevalue = (e, type, name) => {
+    const value = e.target.value.replace(/\s/g, "");
+    checkvalue(name);
+    type(value);
+  };
+
+  /* Подписка на изменениe значений */
   useEffect(() => {
-    /* сброс к ближайшему корректному числу */
-  if (price > 6000000 || price < 1000000) {
-    if (price < 3000001) setPrice(1000000);
-    else setPrice(6000000);
-  }
-  if (months > 60 || months < 1) {
-    if (months < 31) setmonths(1);
-    else setmonths(60);
-  }
-  if (term > 60 || term < 10) {
-    if (term < 31) setTerm(10);
-    else setTerm(60);
-  }
     setTimeout(() => {
       setAnInitialFee(Math.round((term / 100) * price));
       SetAmountLeaseAgreement(
@@ -66,114 +88,49 @@ function App() {
       );
     }, 10);
   }, [months, price, term, anInitialFee, monthslyPayment]);
+
   return (
     <div className="container">
       <h1 className="headtext">Рассчитайте стоимость автомобиля в лизинг</h1>
       <div className="inputs">
-        <div className="inputForm" disabled={off}>
-          <h3 className="mainLabel">Стоимость автомобиля</h3>
-          <div className="Shapes">
-            <div className="line">
-              <input
-                type="tel"
-                value={new Intl.NumberFormat("ru").format(price)}
-                inputMode="numeric"
-                className="numberinput"
-                onChange={(e) => setPrice(e.target.value.replace(/\s/g, ""))}
-              />
-              <h2 className="number">₽</h2>
-            </div>
-            <input
-              type="range"
-              min={1_000_000}
-              max={6_000_000}
-              value={price}
-              className="progress slider-progress"
-              onChange={(e) => setPrice(e.target.value.replace(/\s/g, ""))}
-            />
-          </div>
-        </div>
-        <div className="inputForm" disabled={off}>
-          <h3 className="mainLabel">Первоначальный взнос</h3>
-          <div className="Shapes">
-            <div className="line">
-              <h2 className="numberinput">
-                {new Intl.NumberFormat("ru").format(Math.round(anInitialFee))} ₽
-              </h2>
-              <div className="percent-box">
-                <input
-                  className="percent"
-                  type="number"
-                  max={60}
-                  min={10}
-                  value={term}
-                  onChange={(e) => setTerm(e.target.value.replace(/\s/g, ""))}
-                />
-                <h2>%</h2>
-              </div>
-            </div>
-            <input
-              type="range"
-              max={60}
-              min={10}
-              step={1}
-              value={term}
-              onChange={(e) => setTerm(e.target.value.replace(/\s/g, ""))}
-              className="progress slider-progress"
-            />
-          </div>
-        </div>
-        <div className="inputForm" disabled={off}>
-          <h3 className="mainLabel">Срок лизинга</h3>
-          <div className="Shapes">
-            <div className="line">
-              <input
-                type="number"
-                min={1}
-                max={60}
-                className="numberinput"
-                value={months}
-                onChange={(e) => setmonths(e.target.value.replace(/\s/g, ""))}
-              />
-              <h2 className="number">мес.</h2>
-            </div>
-            <input
-              type="range"
-              min={1}
-              max={60}
-              value={months}
-              onChange={(e) => setmonths(e.target.value.replace(/\s/g, ""))}
-              className="progress slider-progress"
-            ></input>
-          </div>
-        </div>
+        <InputFoarm
+          Label="Стоимость автомобиля"
+          name={"price"}
+          value={price}
+          setValue={setPrice}
+          current="ruble"
+          off={off}
+          handlevalue={handlevalue}
+          min={1000000}
+          max={6000000}
+        />
+        <InputFoarm
+          Label="Первоначальный взнос"
+          name={"term"}
+          value={term}
+          setValue={setTerm}
+          current="percent"
+          off={off}
+          handlevalue={handlevalue}
+          min={10}
+          max={60}
+        />
+        <InputFoarm
+          Label="Срок лизинга"
+          name={"months"}
+          value={months}
+          setValue={setmonths}
+          current="months"
+          off={off}
+          handlevalue={handlevalue}
+          min={1}
+          max={60}
+        />
       </div>
       <div className="results">
-        <div className="result">
-          <h3 className="title">Сумма договора лизинга</h3>
-          <h1 className="content">
-            {new Intl.NumberFormat("ru").format(
-              Math.round(AmountLeaseAgreement)
-            )}{" "}
-            ₽
-          </h1>
-        </div>
-        <div className="result">
-          <h3 className="title">Ежемесячный платеж от</h3>
-          <h1 className="content">
-            {new Intl.NumberFormat("ru").format(Math.round(monthslyPayment))} ₽
-          </h1>
-        </div>
-        <button
-          className="buttomsend"
-          disabled={off}
-          onClick={() => {
-            onSubmit();
-            setOff(true);
-          }}
-        >
-          {off?<div class="lds-dual-ring"/>:`Оставить заявку`}
-        </button>
+        <Result title="Сумма договора лизинга" value={AmountLeaseAgreement} />
+        <Result title="Ежемесячный платеж от" value={monthslyPayment} />
+        <Button off={off} onSubmit={onSubmit} setOff={setOff} />
       </div>
     </div>
   );

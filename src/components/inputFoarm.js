@@ -1,12 +1,43 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
+import React from "react";
 
-export default function inputFoarm() {
-  const {register, handleSubmit} = useForm()
-  const onSubmit = data = console.log(data)
+export default function InputFoarm(props) {
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-<input  />
-    </form>
-  )
+    <div className="inputForm" disabled={props.off}>
+      <h3 className="mainLabel">{props.Label}</h3>
+      <div className="Shapes">
+        <div className="line">
+          <input
+            type="tel"
+            value={new Intl.NumberFormat("ru").format(props.value)}
+            inputMode="numeric"
+            className="numberinput"
+            onChange={(e) =>
+              props.handlevalue(e, props.setValue, `${props.name}`)
+            }
+          />
+          {props.current == "ruble" && <h2 className="number">₽</h2>}
+          {props.current == "months" && <h2 className="number">мес.</h2>}
+          {props.current == "percent" && (
+            <div className="percent-box">
+              <input
+                className="percent"
+                type="number"
+                value={props.value}
+                onChange={(e) => props.handlevalue(e, props.setValue, "term")}
+              />
+              <h2>%</h2>
+            </div>
+          )}
+        </div>
+        <input
+          type="range"
+          min={props.min}
+          max={props.max}
+          value={props.value}
+          className="progress slider-progress"
+          onChange={(e) => props.setValue(e.target.value.replace(/\s/g, ""))}
+        />
+      </div>
+    </div>
+  );
 }
