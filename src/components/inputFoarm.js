@@ -6,8 +6,8 @@ export default function InputFoarm(props) {
       <h3 className="mainLabel">{props.Label}</h3>
       <div className="Shapes">
         <div className="line">
+        {(props.current == "ruble" || props.current == "months") ? 
           <input
-          {...props.register}
             type="tel"
             value={new Intl.NumberFormat("ru").format(props.value)}
             inputMode="numeric"
@@ -15,7 +15,7 @@ export default function InputFoarm(props) {
             onChange={(e) =>
               props.handlevalue(e, props.setValue, `${props.name}`)
             }
-          />
+          />:<h2 className="numberinput">{props.anInitialFee}₽</h2>}
           {props.current == "ruble" && <h2 className="number">₽</h2>}
           {props.current == "months" && <h2 className="number">мес.</h2>}
           {props.current == "percent" && (

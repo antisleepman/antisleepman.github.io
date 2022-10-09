@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import Button from "./components/Button";
 import InputFoarm from "./components/InputFoarm";
 import Result from "./components/Result";
@@ -7,10 +6,6 @@ import useDebounce from "./hooks/debounce";
 import loadProgress from "./js/loadProgress";
 import "./scss/index.scss";
 function App() {
-  const { register, handleSubmit, watch, formState } = useForm({
-    defaultValues: { price: "3300000", term:"13", months:"60", anInitialFee:"420000",AmountLeaseAgreement
-  :"4467313",monthslyPayment:"114455"},
-  });
   const [price, setPrice] = useState(3_300_000);
   const [off, setOff] = useState(false);
   const [term, setTerm] = useState(13);
@@ -100,9 +95,9 @@ function App() {
       <div className="inputs">
         <InputFoarm
           Label="Стоимость автомобиля"
-          register={register("price")}
           name={"price"}
           value={price}
+          anInitialFee={anInitialFee}
           setValue={setPrice}
           current="ruble"
           off={off}
@@ -113,6 +108,7 @@ function App() {
         <InputFoarm
           Label="Первоначальный взнос"
           name={"term"}
+          anInitialFee={anInitialFee}
           value={term}
           setValue={setTerm}
           current="percent"
@@ -124,6 +120,7 @@ function App() {
         <InputFoarm
           Label="Срок лизинга"
           name={"months"}
+          anInitialFee={anInitialFee}
           value={months}
           setValue={setmonths}
           current="months"
