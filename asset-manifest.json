@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.c641e8d0.css",
+    "main.css": "/static/css/main.d80a5601.css",
     "main.js": "/static/js/main.77b4f9d0.js",
     "static/media/Nekst-Black.ttf": "/static/media/Nekst-Black.dffaebf93d38d4c41536.ttf",
     "static/media/Gilroy-Bold.ttf": "/static/media/Gilroy-Bold.901a60fc2835c74fba67.ttf",
@@ -12,11 +12,11 @@
     "static/media/Gilroy-Light.woff": "/static/media/Gilroy-Light.9df2f5dbbb9c90a6ede7.woff",
     "static/media/Gilroy-Bold.woff2": "/static/media/Gilroy-Bold.ef7c40ff1efeaaa4c7c6.woff2",
     "index.html": "/index.html",
-    "main.c641e8d0.css.map": "/static/css/main.c641e8d0.css.map",
+    "main.d80a5601.css.map": "/static/css/main.d80a5601.css.map",
     "main.77b4f9d0.js.map": "/static/js/main.77b4f9d0.js.map"
   },
   "entrypoints": [
-    "static/css/main.c641e8d0.css",
+    "static/css/main.d80a5601.css",
     "static/js/main.77b4f9d0.js"
   ]
 }
