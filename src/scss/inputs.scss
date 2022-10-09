@@ -1,13 +1,9 @@
 .inputs {
   display: flex;
   flex-direction: row;
-  margin-top: 32px;
-  margin-left: 47px;
-  margin-right: 47px;
-  width: 98%;
+  width: 100%;
   .inputForm {
     width: 33%;
-    margin-right: 32px;
     &[disabled]{
       pointer-events: none;
       opacity: 0.4;
@@ -30,7 +26,6 @@
       display: flex;
       flex-direction: column;
       height: 68px;
-      margin-right: 32px;
       .line {
         display: flex;
         flex-direction: row;

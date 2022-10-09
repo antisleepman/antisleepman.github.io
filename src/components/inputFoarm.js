@@ -7,6 +7,7 @@ export default function InputFoarm(props) {
       <div className="Shapes">
         <div className="line">
           <input
+          {...props.register}
             type="tel"
             value={new Intl.NumberFormat("ru").format(props.value)}
             inputMode="numeric"

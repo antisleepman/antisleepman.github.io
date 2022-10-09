@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import Button from "./components/Button";
 import InputFoarm from "./components/InputFoarm";
 import Result from "./components/Result";
@@ -6,6 +7,10 @@ import useDebounce from "./hooks/debounce";
 import loadProgress from "./js/loadProgress";
 import "./scss/index.scss";
 function App() {
+  const { register, handleSubmit, watch, formState } = useForm({
+    defaultValues: { price: "3300000", term:"13", months:"60", anInitialFee:"420000",AmountLeaseAgreement
+  :"4467313",monthslyPayment:"114455"},
+  });
   const [price, setPrice] = useState(3_300_000);
   const [off, setOff] = useState(false);
   const [term, setTerm] = useState(13);
@@ -60,12 +65,12 @@ function App() {
       throw new Error(`ERROR`);
     }
   };
-/* Увеличиваем время на ввод текст инпутов */
+  /* Увеличиваем время на ввод текст инпутов */
   const checkvalue = useDebounce((name) => {
     check(name);
   }, 1000);
 
-/* Обработка текст инпутов */
+  /* Обработка текст инпутов */
   const handlevalue = (e, type, name) => {
     const value = e.target.value.replace(/\s/g, "");
     checkvalue(name);
@@ -90,11 +95,12 @@ function App() {
   }, [months, price, term, anInitialFee, monthslyPayment]);
 
   return (
-    <div className="container">
+    <form className="container">
       <h1 className="headtext">Рассчитайте стоимость автомобиля в лизинг</h1>
       <div className="inputs">
         <InputFoarm
           Label="Стоимость автомобиля"
+          register={register("price")}
           name={"price"}
           value={price}
           setValue={setPrice}
@@ -132,7 +138,7 @@ function App() {
         <Result title="Ежемесячный платеж от" value={monthslyPayment} />
         <Button off={off} onSubmit={onSubmit} setOff={setOff} />
       </div>
-    </div>
+    </form>
   );
 }
 export default App;

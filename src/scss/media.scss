@@ -15,6 +15,7 @@
     width: 95%;
     margin: 2% 3%;
     .inputForm {
+      margin-right: 20px;
       width: 33.33%;
       .mainLabel {
         padding-bottom: 40px;
@@ -44,7 +45,7 @@
   }
 }
 
-@media (max-width: 1439px) {
+@media (max-width: 1439px) and (min-width:1120px) {
   .headtext {
     margin-top: 13%;
     margin-left: 45px;
@@ -58,13 +59,16 @@
     opacity: 0.47;
   }
   .inputs {
+    margin: 45px 0px;
+    padding: 0px 45px;
     .inputForm {
+      margin-right: 20px;
       .mainLabel {
         padding-bottom: 30px;
       }
       .Shapes {
         .progress.slider-progress {
-          width: 73%;
+          width: 80%;
         }
       }
     }
@@ -72,9 +76,10 @@
   .results {
     width: 100%;
     flex-direction: row;
+    padding: 0px 45px;
     .result {
-      width: 33.33%;
-      margin-right: 3%;
+      width: 33%;
+      margin-right: 80px;
       .content {
         white-space: nowrap;
       }
@@ -86,7 +91,7 @@
   }
 }
 
-@media (max-width: 1119px) {
+@media (max-width: 1119px) and (min-width:768px) {
   .headtext {
     width: 96%;
     margin-top: 9%;
@@ -128,6 +133,7 @@
 
   .results {
     margin-top: 0px;
+    margin-left: 47px;
     width: 100%;
     .result {
       margin-right: 19%;
@@ -152,23 +158,22 @@
 
 @media (max-width: 767px) {
   .headtext {
-    margin-top: 12%;
-    margin-left: 11px;
+    padding-top: 12%;
+    padding-left: 11px;
     font-size: 34px;
     width: 100%;
-
-    float: inline-start;
   }
   .inputs {
-    margin-left: 11px;
-    margin-top: 27px;
+    flex-direction: column;
+    padding-left: 11px;
+    padding-right: 20px;
     .inputForm {
+      width: 100%;
       height: 96px;
-      margin-bottom: 28px;
-      margin-right: 20px;
+      margin-top: 28px;
       .Shapes {
         margin-top: 8px;
-        width: 90%;
+        width: 100%;
         .line {
           .numberinput {
             width: 100%;
@@ -183,6 +188,8 @@
   .results {
     flex-direction: column;
     margin-left: 11px;
+    margin-top: 20px;
+
     .result {
       width: 100%;
       margin-top: 10px;
@@ -196,7 +203,6 @@
       position: relative;
       padding: 10px 20px;
       top: 4px;
-      left: -4%;
       height: 60px;
     }
   }
